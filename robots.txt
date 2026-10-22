@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://songokura.github.io/mylt/sitemap.xml
+Sitemap: https://kzru-cargo.kz/sitemap.xml
