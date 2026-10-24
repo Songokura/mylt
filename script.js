@@ -44,3 +44,16 @@ addEventListener('scroll',()=>{
   if(ticking)return;ticking=true;
   requestAnimationFrame(()=>{ticking=false;upd();hero();mbar.classList.toggle('show',scrollY>500)});
 },{passive:true});
+
+function conv(key){
+  const id=(window.MYLT_CONV||{})[key];
+  if(!id||typeof window.gtag!=='function')return;
+  window.gtag('event','conversion',{send_to:id,value:1.0,currency:'USD',transport_type:'beacon'});
+}
+addEventListener('click',e=>{
+  const a=e.target.closest&&e.target.closest('a[href]');
+  if(!a)return;
+  const h=a.getAttribute('href');
+  if(h.startsWith('tel:'))conv('phone');
+  else if(h.includes('wa.me/')||h.startsWith('mailto:'))conv('contact');
+},true);
